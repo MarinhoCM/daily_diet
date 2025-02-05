@@ -1,0 +1,38 @@
+import { Body, Controller, Get, Logger, Post, Query, Res } from "@nestjs/common";
+import { CreateUsersDto } from "../dto/create-users.dto";
+import { GetUsersDto } from "../dto/get-users.dto";
+import { CreateUserUseCase, GetAllUserUseCase, GetUserMetricsUseCase } from "src/application/use-cases/daily-diet";
+import { Response } from 'express'
+
+@Controller('user')
+export class UsersController {
+  private readonly logger = new Logger(UsersController.name);
+  private readonly serviceLogName = '[USER API]'
+
+  constructor(
+    private createUserUseCase: CreateUserUseCase,
+    private getAllUserUseCase: GetAllUserUseCase,
+    private getUserMetricsUseCase: GetUserMetricsUseCase
+  ) { }
+
+  @Post()
+  async createUser(@Body() user: CreateUsersDto, @Res() res: Response) {
+    this.logger.log(`${this.serviceLogName} Iniciando criação de usuário: ${JSON.stringify(user, null, 4)}`);
+    const result = await this.createUserUseCase.execute(user);
+    return res.status(201).json({
+      success: true,
+      data: result
+    });
+  }
+
+  @Get()
+  async getUsers(@Query() filter: GetUsersDto, @Res() res: Response) {
+    this.logger.log(`${this.serviceLogName} Iniciando consulta de usuários`);
+    const result = await this.getAllUserUseCase.execute(filter)
+
+    return res.status(200).json({
+      success: true,
+      data: result
+    })
+  }
+}
