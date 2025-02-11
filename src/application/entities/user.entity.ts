@@ -60,4 +60,13 @@ export class User {
         this._snacks = value;
         return
     }
+
+    toString(): string {
+        return `User {
+          name: ${this.name},
+          username: ${this._username},
+          email: ${this.email},
+          snacks: ${this.snacks.map(snack => snack.name)}
+        }`;
+      }
 }

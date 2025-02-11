@@ -1,6 +1,12 @@
 import { Snack } from "./snack.entity";
 
 export class Diet {
+    /**
+     * 
+     * @param _description 
+     * @param _snacks 
+     * @param _objective 
+     */
 
     constructor(
         private _description: string,
@@ -33,5 +39,13 @@ export class Diet {
 
     public set objective(value: string) {
         this._objective = value;
+    }
+
+    toString(): string {
+        return `Diet {
+          description: ${this.description},
+          snacks: ${this.snacks.map(snack => snack.name)},
+          objective: ${this.objective},
+        }`;
     }
 }
