@@ -1,5 +1,5 @@
 import { User } from "../entities";
-import { ICreateUser, IGetUser, IUpdateUser } from "../interfaces";
+import { ICreateUser, IGetUser, IUpdateUser } from "../../infra/http/daily_diet/interfaces";
 
 export interface UsersRepository {
     CreateUsers(user: ICreateUser): User;
