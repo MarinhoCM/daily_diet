@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Logger, Post, Query, Res } from "@nestjs/common";
+import { Response } from 'express';
+import { CreateUserUseCase, GetAllUserUseCase } from "src/application/use-cases/daily-diet";
 import { CreateUsersDto } from "../dto/create-users.dto";
 import { GetUsersDto } from "../dto/get-users.dto";
-import { CreateUserUseCase, GetAllUserUseCase, GetUserMetricsUseCase } from "src/application/use-cases/daily-diet";
-import { Response } from 'express'
 
 @Controller('user')
 export class UsersController {
@@ -12,7 +12,6 @@ export class UsersController {
   constructor(
     private createUserUseCase: CreateUserUseCase,
     private getAllUserUseCase: GetAllUserUseCase,
-    private getUserMetricsUseCase: GetUserMetricsUseCase
   ) { }
 
   @Post()

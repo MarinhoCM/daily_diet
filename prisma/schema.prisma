@@ -1,0 +1,34 @@
+model Diet {
+  id_diet     Int         @id @default(autoincrement())
+  description String
+  objective   String
+  user        User?       @relation(fields: [userId_user], references: [id_user])
+  userId_user Int?
+  snacks      DietSnack[]
+}
+
+model Snack {
+  id_snack    Int         @id @default(autoincrement())
+  name        String
+  datetime    DateTime
+  from_diet   Boolean
+  userId_user Int?
+  diets       DietSnack[]
+}
+
+model DietSnack {
+  dietId  Int
+  diet    Diet  @relation(fields: [dietId], references: [id_diet])
+  snackId Int
+  snack   Snack @relation(fields: [snackId], references: [id_snack])
+
+  @@id([dietId, snackId])
+}
+
+model User {
+  id_user  Int    @id @default(autoincrement())
+  name     String
+  username String
+  email    String
+  diets    Diet[]
+}
