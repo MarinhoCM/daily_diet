@@ -1,4 +1,4 @@
-import { Snack } from "../entities";
+import { Snack } from "../../../../application/entities";
 
 export interface ICreateUser {
     name: string;
