@@ -1,0 +1,10 @@
+[
+  {
+    "type": "sqlite",
+    "path": "c:\\Users\\caua.sousa\\Desktop\\training\\apis\\node\\daily_diet\\daily_diet.db"
+  },
+  {
+    "type": "sqlite",
+    "path": "c:\\Users\\caua.sousa\\Desktop\\training\\apis\\node\\daily_diet\\prisma\\daily_diet.db"
+  }
+]

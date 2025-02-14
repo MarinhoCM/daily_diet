@@ -1,4 +1,4 @@
-import { Snack } from "../../../../application/entities";
+import { Snack } from "@application/entities";
 
 export interface ICreateUser {
     name: string;
@@ -8,14 +8,15 @@ export interface ICreateUser {
 }
 
 export interface IUpdateUser {
-    name: string;
-    username: string;
-    email: string;
+    id: number;
+    name?: string;
+    username?: string;
+    email?: string;
 }
 
 export interface IGetUser {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
+    id?: number;
+    name?: string;
+    username?: string;
+    email?: string;
 } 
