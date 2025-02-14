@@ -5,7 +5,7 @@ export class CreateUsersDto {
     @IsString({message: templates.is_string.replace('$field', 'name')})
     name: string;
     
-    @IsString({message: templates.is_string.replace('$field', 'name')})
+    @IsString({message: templates.is_string.replace('$field', 'username')})
     username: string;
 
     @IsEmail({}, {message: templates.is_email.replace('$field', 'email')})

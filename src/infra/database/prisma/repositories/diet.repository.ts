@@ -25,7 +25,7 @@ export class DietRepository {
     });
   }
 
-  async deleteDiet(id: number, reason: string = ""): Promise<Diet> {
+  async deleteDiet(id: number): Promise<Diet> {
     return await this.prisma.diet.delete({ where: { id_diet: id } });
   }
 }
