@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Logger, Post, Query, Res } from "@nestjs/common";
+import { Body, Controller, Get, Logger, Post, Put, Query, Res } from "@nestjs/common";
 import { Response } from 'express';
 import { CreateUserUseCase, GetAllUserUseCase } from "src/application/use-cases/daily-diet";
 import { CreateUsersDto } from "../dto/create-users.dto";
 import { GetUsersDto } from "../dto/get-users.dto";
+import { IUpdateUser } from "../interfaces";
 
 @Controller('user')
 export class UsersController {
@@ -11,7 +12,7 @@ export class UsersController {
 
   constructor(
     private createUserUseCase: CreateUserUseCase,
-    private getAllUserUseCase: GetAllUserUseCase,
+    private getAllUserUseCase: GetAllUserUseCase
   ) { }
 
   @Post()
@@ -25,12 +26,16 @@ export class UsersController {
 
   @Get()
   async getUsers(@Query() filter: GetUsersDto, @Res() res: Response) {
-    this.logger.log(`${this.serviceLogName} Iniciando consulta de usuários`);
-    const result = await this.getAllUserUseCase.execute(filter)
+    const result = await this.getAllUserUseCase.execute()
 
     return res.status(200).json({
       success: true,
       data: result
     })
+  }
+
+  @Put()
+  async updateUser(){
+    return 
   }
 }
