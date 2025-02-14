@@ -1,7 +1,13 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { UseCase } from "../use-case";
+import { UserRepository } from "@infra/database/prisma/repositories/users.repository";
 
-interface CreateUserUseCaseRequest { }
+interface CreateUserUseCaseRequest { 
+    name: string;
+    username: string;
+    email: string;
+}
+
 export interface CreateUserUseCaseResponse { }
 
 
@@ -10,11 +16,11 @@ export class CreateUserUseCase implements UseCase<CreateUserUseCaseRequest, Crea
     private readonly logger = new Logger(CreateUserUseCase.name)
 
     constructor(
-            
+        private readonly userRepository: UserRepository    
     ) { }
 
-    execute(request: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
-        this.logger.log(`Iniciando a criação de usuário`);
-        return;
+    async execute(request: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
+        this.logger.log(`Iniciando a criação de usuário: ${JSON.stringify(request, null, 4)}`);
+        return await this.userRepository.createUser(request);
     }
 }

@@ -16,7 +16,6 @@ export class UsersController {
 
   @Post()
   async createUser(@Body() user: CreateUsersDto, @Res() res: Response) {
-    this.logger.log(`${this.serviceLogName} Iniciando criação de usuário: ${JSON.stringify(user, null, 4)}`);
     const result = await this.createUserUseCase.execute(user);
     return res.status(201).json({
       success: true,

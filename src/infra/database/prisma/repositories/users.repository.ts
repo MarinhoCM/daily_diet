@@ -8,23 +8,23 @@ export class UserRepository {
     constructor(private readonly prisma: PrismaService) { }
 
     async createUser(data: Prisma.UserCreateInput): Promise<User> {
-        return this.prisma.user.create({ data });
+        return await this.prisma.user.create({ data });
     }
 
     async findUserById(id: number): Promise<User | null> {
-        return this.prisma.user.findUnique({ where: { id_user: id } });
+        return await this.prisma.user.findUnique({ where: { id_user: id } });
     }
 
     async findUserByEmail(email: string): Promise<User | null> {
-        return this.prisma.user.findFirst({ where: { email } });
+        return await this.prisma.user.findFirst({ where: { email } });
     }
 
     async findAllUsers(): Promise<User[]> {
-        return this.prisma.user.findMany();
+        return await this.prisma.user.findMany();
     }
 
     async updateUser(id: number, data: Prisma.UserUpdateInput): Promise<User> {
-        return this.prisma.user.update({
+        return await this.prisma.user.update({
             where: { id_user: id },
             data,
         });
